@@ -11,7 +11,7 @@
                     </div>
                 </div>
                 <div class="chat-bubble">{{ comment.comment }}</div>
-                <p>{{ comment.date }}</p>
+                <p v-if="comment.date">{{ formatDate(comment.date) }}</p>
             </div>
         </li>
     </ul>
@@ -20,6 +20,7 @@
 <script setup lang="ts">
     import type { Comment } from '../types.ts'
     import { usePeopleStore } from '../stores/people'
+    import { formatDate } from '../utils/dates'
 
     defineProps<{
         comments?: Comment[]|null

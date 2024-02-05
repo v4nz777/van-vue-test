@@ -19,6 +19,6 @@ export type Topic = {
 
 export type Comment = {
     comment: string;
-    date:    Date;
+    date:    string;
     by:      string;
 }
