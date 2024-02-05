@@ -6,6 +6,7 @@
   import { useTopicStore } from './stores/topicstore';
   import StagingTopic from './components/StagingTopic.vue';
   import { usePeopleStore } from './stores/people';
+  
 
   
   const topicstore = useTopicStore()
@@ -27,7 +28,7 @@
     await peoplestore.loadPeopleFromExternal(url)
   })
   
-
+  const items = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
 </script>
 
 <template>
@@ -39,7 +40,15 @@
 
           </textarea>
         </div>
-        <li v-for="topic,index in topicstore.topics" :key="topic.name">
+      
+        <div class="flex flex-col gap-4 w-52" v-if="topicstore.fetching" v-for="item in items" :key="item">
+          <div class="skeleton h-32 w-full"></div>
+          <div class="skeleton h-4 w-28"></div>
+          <div class="skeleton h-4 w-full"></div>
+          <div class="skeleton h-4 w-full"></div>
+        </div>
+
+        <li v-else v-for="topic,index in topicstore.topics" :key="topic.name">
           <TopicItem :topic="topic" :index="index" />
         </li>
       </TransitionGroup>
@@ -59,4 +68,3 @@
 }
 
 </style>
-./stores/topicstore
