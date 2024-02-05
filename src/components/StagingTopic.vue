@@ -29,6 +29,7 @@
     import CommentSection from './CommentSection.vue';
     import { usePeopleStore } from '../stores/people';
     import type { Comment } from '../types';
+    import { nowString } from '../utils/dates';
 
 
     const topicstore = useTopicStore()
@@ -41,7 +42,7 @@
     function addComment(){
         const comment:Comment = {
             comment: commentInput.value,
-            date: new Date(),
+            date: nowString(),
             by: peoplestore.me.guid
         }
         topicstore.addComment(topicstore.staged?.guid,comment)
