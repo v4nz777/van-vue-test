@@ -1,5 +1,5 @@
 <template>
-    <dialog ref="dialog" class="modal">
+    <dialog ref="dialog" class="modal" @keydown.esc.prevent="console.log('press close button')">
         <div class="modal-box w-full h-max overflow-x-visible">
             <div class="flex justify-between">
                 <p class="text-sm">#{{ topicstore.staged?.guid }}</p>
