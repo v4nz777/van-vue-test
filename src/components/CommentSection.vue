@@ -21,7 +21,7 @@
     import type { Comment } from '../types.ts'
     import { usePeopleStore } from '../stores/people'
     import { formatDate } from '../utils/dates'
-    import { ref,onMounted,watch } from 'vue'
+    import { ref,onMounted,watch, nextTick } from 'vue'
 
     const props = defineProps<{
         comments?: Comment[]|null
@@ -41,7 +41,8 @@
         scrollToLatestChat()
     })
 
-    watch(()=>props.comments,()=>{
+    watch(()=>props.comments,async()=>{
+        await nextTick()
         scrollToLatestChat()
     },{deep:true})
 
