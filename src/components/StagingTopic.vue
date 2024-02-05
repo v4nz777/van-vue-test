@@ -7,7 +7,7 @@
             </div>
             
             <div class="bg-primary my-3 rounded-box">
-                <p class="py-10 text-primary-content text-center font-bold">{{ topicstore.staged?.name }}</p>
+                <p class="py-10 text-primary-content text-center font-bold break-words p-5">{{ topicstore.staged?.name }}</p>
             </div>
             
             <p>Comments:</p>
