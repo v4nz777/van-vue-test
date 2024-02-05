@@ -30,7 +30,7 @@ export const useTopicStore =  defineStore('use-topic-store', ()=> {
         const topic:Topic = {
             guid:nanoid(8),
             name:name,
-            comments: null
+            comments: []
         }
         topics.value.unshift(topic)
     }
