@@ -10,7 +10,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="chat-bubble">{{ comment.comment }}</div>
+                <div class="chat-bubble break-words">{{ comment.comment }}</div>
                 <p class="chat-footer opacity-50 text-xs" v-if="comment.date">{{ formatDate(comment.date) }}</p>
             </div>
         </li>
