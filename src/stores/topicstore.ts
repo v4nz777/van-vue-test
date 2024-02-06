@@ -55,6 +55,11 @@ export const useTopicStore =  defineStore('use-topic-store', ()=> {
         return topics.value[findIndex]
     }
 
+    function editTopic(topicId:string, changes:string){
+        const findIndex = topics.value.findIndex(topic=>topic.guid===topicId)
+        topics.value[findIndex].name = changes
+    }
+
 
     const staged = ref<Topic|null>(null)
 
@@ -80,7 +85,8 @@ export const useTopicStore =  defineStore('use-topic-store', ()=> {
         unstage,
         deleteTopic,
         addTopic,
-        addComment
+        addComment,
+        editTopic
 
     }
  

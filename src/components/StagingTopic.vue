@@ -3,13 +3,20 @@
         <div class="modal-box w-full h-max overflow-x-visible">
             <div class="flex justify-between">
                 <p class="text-sm">#{{ topicstore.staged?.guid }}</p>
-                <button class="btn btn-xs" @click="topicstore.unstage()">Close</button>
+                <div class="flex gap-2">
+                    <button class="btn btn-xs" @click="useEditMode()">Edit</button>
+                    <button v-if="topicstore.staged" class="btn btn-xs" @click="topicstore.unstage()">Close</button>
+                </div>
             </div>
             
-            <div class="bg-primary my-3 rounded-box">
+            
+            <textarea v-if="editMode" class="textarea textarea-primary w-full" type="text" v-model="editContent" autofocus
+                @keydown.enter.prevent="save()">
+            </textarea>
+            <div class="bg-primary my-3 rounded-box" v-else>
                 <p class="py-10 text-primary-content text-center font-bold break-words p-5">{{ topicstore.staged?.name }}</p>
             </div>
-            
+
             <p>Comments:</p>
             <CommentSection :comments="topicstore.staged?.comments" class=""/>
 
@@ -37,6 +44,21 @@
 
 
     const dialog = ref<HTMLDialogElement|null>(null)
+
+    const editMode = ref(false)
+    const editContent = ref('')
+    const useEditMode = ()=> {
+        editMode.value = true
+        editContent.value = topicstore.staged?topicstore.staged.name:''
+    }
+
+    const save = ()=> {
+        if(topicstore.staged) {
+            topicstore.editTopic(topicstore.staged.guid,editContent.value)
+            editMode.value = false
+        }
+    }
+
 
     const commentInput = ref('')
     function addComment(){
