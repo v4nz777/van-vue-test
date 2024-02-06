@@ -4,13 +4,13 @@
             <div class="flex justify-between">
                 <p class="text-sm">#{{ topicstore.staged?.guid }}</p>
                 <div class="flex gap-2">
-                    <button class="btn btn-xs" @click="useEditMode()">Edit</button>
+                    <button v-if="!editMode" class="btn btn-xs" @click="useEditMode()">Edit</button>
                     <button v-if="topicstore.staged" class="btn btn-xs" @click="topicstore.unstage()">Close</button>
                 </div>
             </div>
             
             
-            <textarea v-if="editMode" class="textarea textarea-primary w-full" type="text" v-model="editContent" autofocus
+            <textarea v-if="editMode" class="textarea textarea-primary w-full my-3" type="text" v-model="editContent" autofocus
                 @keydown.enter.prevent="save()">
             </textarea>
             <div class="bg-primary my-3 rounded-box" v-else>
